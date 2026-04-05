@@ -139,9 +139,13 @@ start_monitor()
 def home():
     return "Alzheimer Route Monitor is running on Render!", 200
 
-@app.route("/health")
+@app.route('/health')
 def health():
-    return "OK", 200
+    return {
+        "status": "running",
+        "backend": "render",
+        "ml": "active"
+    }, 200
 
 # =====================================
 # LOCAL RUN (optional)
@@ -149,3 +153,4 @@ def health():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
